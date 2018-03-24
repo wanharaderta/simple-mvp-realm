@@ -13,29 +13,29 @@ import javax.inject.Inject
 class LoginActivity : AppCompatActivity() {
 
     @Inject
-    lateinit var authutils : AuthUtils
+    lateinit var authutils: AuthUtils
 
     var presenter: LoginPresenter? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         SimpleApp.component.inject(this)
-        presenter = LoginPresenter(this,authutils)
+        presenter = LoginPresenter(this, authutils)
         setContentView(R.layout.activity_login)
 
         btnLogin.setOnClickListener {
-            presenter!!.loginUser(email.text.toString(),pass.text.toString())
+            presenter!!.loginUser(email.text.toString(), pass.text.toString())
 
         }
 
         register.setOnClickListener {
-            val intent = Intent(this,RegisterActivity::class.java)
+            val intent = Intent(this, RegisterActivity::class.java)
             startActivity(intent)
         }
     }
 
-    fun intent(){
-        val intent = Intent(this,MainActivity::class.java)
+    fun intent() {
+        val intent = Intent(this, MainActivity::class.java)
         startActivity(intent)
 
     }

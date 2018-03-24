@@ -16,10 +16,6 @@ import kotlinx.android.synthetic.main.activity_main.*
 import javax.inject.Inject
 
 
-
-
-
-
 class MainActivity : AppCompatActivity() {
 
     @Inject
@@ -29,8 +25,6 @@ class MainActivity : AppCompatActivity() {
 
     var rAdapter : TransAdapter? = null
     var realm: Realm? = null
-
-    //var trans: List<Transaction>? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -57,12 +51,6 @@ class MainActivity : AppCompatActivity() {
 
 
     }
-
-    fun onRefresh(){
-
-    }
-
-
 
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {

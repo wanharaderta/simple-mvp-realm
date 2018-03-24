@@ -7,8 +7,6 @@ import io.realm.Realm
 import io.realm.RealmConfiguration
 
 
-
-
 /**
  *
  * Created by Wanhar Aderta Daeng Maro on 3/23/2018.
@@ -18,16 +16,16 @@ import io.realm.RealmConfiguration
 class LoginPresenter(var view: LoginActivity, var authutils: AuthUtils) {
 
 
-    fun loginUser(mEmail:String, mPass:String){
+    fun loginUser(mEmail: String, mPass: String) {
 
         var config = RealmConfiguration.Builder().name("user.realm").build()
-        var realm   = Realm.getInstance(config)
+        var realm = Realm.getInstance(config)
 
 
         val user = realm.where(User::class.java).findAll()
-        for (user: User in user){
+        for (user: User in user) {
 
-            if (mEmail.equals(user.email) && mPass.equals(user.password)){
+            if (mEmail.equals(user.email) && mPass.equals(user.password)) {
                 authutils.saveAccessToken(user.id.toString())
                 view.intent()
             }

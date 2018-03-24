@@ -6,10 +6,6 @@ import io.realm.Realm
 import io.realm.RealmConfiguration
 
 
-
-
-
-
 /**
  *
  * Created by Wanhar Aderta Daeng Maro on 3/23/2018.
@@ -19,34 +15,32 @@ import io.realm.RealmConfiguration
 class MainPresenter(var view: MainActivity) {
 
     var config = RealmConfiguration.Builder().name("transaction.realm").build()
-    var realm   = Realm.getInstance(config)
+    var realm = Realm.getInstance(config)
 
-    fun insertTransaction(userId:Int){
+    fun insertTransaction(userId: Int) {
 
 
         realm.beginTransaction()
 
-        var transaction    = realm.createObject(Transaction::class.java,getNextId())
+        var transaction = realm.createObject(Transaction::class.java, getNextId())
 
-        transaction.product   = "Samsung"
-        transaction.price     = 500000
-        transaction.userId    = userId
+        transaction.product = "Samsung"
+        transaction.price = 500000
+        transaction.userId = userId
 
         realm.commitTransaction()
 
-        val allTrans  = realm.where(Transaction::class.java).equalTo("userId",userId).findAll()
+        val allTrans = realm.where(Transaction::class.java).equalTo("userId", userId).findAll()
 
-            allTrans.forEach{
-                transaction: Transaction? ->  println("trans : ${transaction!!.product}: ${transaction!!.userId}")
-            }
+        allTrans.forEach { transaction: Transaction? ->
+            println("trans : ${transaction!!.product}: ${transaction!!.userId}")
+        }
 
     }
 
+    fun getTrans(userid: Int) {
 
-
-    fun getTrans(userid: Int){
-
-        val list = ArrayList( realm.where(Transaction::class.java).equalTo("userId",userid).findAll())
+        val list = ArrayList(realm.where(Transaction::class.java).equalTo("userId", userid).findAll())
 
         view.setList(list)
     }
